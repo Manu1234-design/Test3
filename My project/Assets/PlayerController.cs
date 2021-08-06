@@ -13,6 +13,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float thrusterForce = 1000f;
 
+    [SerializeField]
+    private float thrusterFuelBurnSpeed = 1f;
+
+    [SerializeField]
+    private float thrusterFuelRegenSpeed = 0.3f;
+    private float thrusterFuelAmount = 1f;
+
+
+    public float GetThrusterFuelAmount () {
+        return thrusterFuelAmount;
+    }
+
     [Header("Spring Settings")]
     [SerializeField]
     private JointDriveMode jointMode = JointDriveMode.Position;
@@ -59,12 +71,24 @@ public class PlayerController : MonoBehaviour
 
         Vector3 _thrusterForce = Vector3.zero;
 
-        if (Input.GetButton("Jump")){
-            _thrusterForce = Vector3.up * thrusterForce;
-            SetJointSettings(0f);
+        if (Input.GetButton("Jump") && thrusterFuelAmount > 0f){
+
+            thrusterFuelAmount -= thrusterFuelBurnSpeed * Time.deltaTime;
+            if(thrusterFuelAmount >= 0.01f){
+                _thrusterForce = Vector3.up * thrusterForce;
+                SetJointSettings(0f);
+            }
+            
+
+
         } else {
+
+            thrusterFuelAmount += thrusterFuelRegenSpeed * Time.deltaTime;
+
             SetJointSettings(jointSpring);
         }
+
+        thrusterFuelAmount = Mathf.Clamp (thrusterFuelAmount, 0f, 1f);
 
 
         motor.ApplyThruster(_thrusterForce);
