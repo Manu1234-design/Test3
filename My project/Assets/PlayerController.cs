@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+
+[RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(ConfigurableJoint))]
 [RequireComponent(typeof(PlayerMotor))]
 public class PlayerController : MonoBehaviour
@@ -16,6 +18,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float thrusterFuelBurnSpeed = 1f;
 
+
+    
+    
+
     [SerializeField]
     private float thrusterFuelRegenSpeed = 0.3f;
     private float thrusterFuelAmount = 1f;
@@ -24,6 +30,8 @@ public class PlayerController : MonoBehaviour
     public float GetThrusterFuelAmount () {
         return thrusterFuelAmount;
     }
+
+
 
     [Header("Spring Settings")]
     [SerializeField]
@@ -35,24 +43,29 @@ public class PlayerController : MonoBehaviour
 
     private PlayerMotor motor;
     private ConfigurableJoint joint;
+    private Animator animator;
     // Start is called before the first frame update
     void Start()
     {
         motor = GetComponent<PlayerMotor>();
         joint = GetComponent<ConfigurableJoint>();
+        animator = GetComponent<Animator>();
         SetJointSettings (jointSpring);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        float _xMov = Input.GetAxisRaw("Horizontal");
-        float _zMov = Input.GetAxisRaw("Vertical");
+        float _xMov = Input.GetAxis("Horizontal");
+        float _zMov = Input.GetAxis("Vertical");
 
         Vector3 _movHorizontal = transform.right * _xMov;
         Vector3 _movVertical = transform.forward * _zMov;
 
-        Vector3 _velocity = (_movHorizontal + _movVertical).normalized * speed;
+        Vector3 _velocity = (_movHorizontal + _movVertical) * speed;
+
+        animator.SetFloat ("ForwardVelocity", _zMov);
 
         motor.Move(_velocity);
 
