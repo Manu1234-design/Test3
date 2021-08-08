@@ -153,7 +153,8 @@ MonoBehaviour:
   m_RenderPipelineRayTracingResources: {fileID: 0}
   m_DefaultVolumeProfile: {fileID: 11400000, guid: ab2975ba308d7eb4292642b74d97d010,
     type: 2}
-  m_DefaultLookDevProfile: {fileID: 0}
+  m_DefaultLookDevProfile: {fileID: 11400000, guid: 254c4fe87beb7be4fa72e1681edbed02,
+    type: 2}
   m_RenderingPathDefaultCameraFrameSettings:
     bitDatas:
       data1: 70297877217101
@@ -211,9 +212,9 @@ MonoBehaviour:
     colorBufferFormat: 74
     supportCustomPass: 1
     customBufferFormat: 12
-    supportedLitShaderMode: 1
+    supportedLitShaderMode: 2
     supportDecals: 1
-    msaaSampleCount: 8
+    msaaSampleCount: 1
     supportMotionVectors: 1
     supportRuntimeDebugDisplay: 1
     supportDitheringCrossFade: 1
@@ -316,7 +317,7 @@ MonoBehaviour:
       ChromaticAberrationMaxSamples: 03000000060000000c000000
     lightSettings:
       useContactShadow:
-        m_Values: 000000
+        m_Values: 
         m_SchemaId:
           m_Id: 
     maximumLODLevel:
@@ -345,8 +346,8 @@ MonoBehaviour:
   m_DefaultMaterialQualityLevel: 4
   diffusionProfileSettings: {fileID: 0}
   diffusionProfileSettingsList:
-  - {fileID: 11400000, guid: d3e15b8498231dc43aa27bf6a6a08a07, type: 2}
-  - {fileID: 11400000, guid: 1b61bb84b9c218747ae6c58132fbb992, type: 2}
+  - {fileID: 11400000, guid: d96622722d747fc4c8a425f129a9972d, type: 2}
+  - {fileID: 11400000, guid: aaf9576fb0c670e458cfcead8307b795, type: 2}
   beforeTransparentCustomPostProcesses: []
   beforePostProcessCustomPostProcesses: []
   afterPostProcessCustomPostProcesses: []
